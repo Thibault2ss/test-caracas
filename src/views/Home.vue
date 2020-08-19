@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PlaidLinkButton @connected="getTransactions()"/>
+    <TransactionList v-if="transactions" :transactions="transactions"/>
+    <p class="error" v-if="error">{{ error }}</p>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import PlaidLinkButton from '@/components/PlaidLinkButton.vue'
+import TransactionList from '@/components/TransactionList.vue'
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    PlaidLinkButton,
+    TransactionList
+  },
+
+  data: () => ({
+    transactions: [],
+    error: null
+  }),
+
+  methods: {
+    getTransactions () {
+      this.$axios.get('transactions')
+        .then(resp => {
+          const data = resp.data
+          console.log(data)
+          if (data.error != null) {
+            this.error = data.error
+            return
+          }
+          this.transactions = data.transactions
+        })
+    }
   }
 }
 </script>

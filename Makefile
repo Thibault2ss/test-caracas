@@ -4,7 +4,13 @@ ifneq ("$(wildcard docker-compose.local.yml)","")
 DOCKER_COMPOSE_YML += --file docker-compose.local.yml
 endif
 
-QUICKSTART := go
+QUICKSTART := server
+
+.PHONY: build
+build:
+	$(DOCKER_COMPOSE) \
+		$(DOCKER_COMPOSE_YML) \
+		build
 
 .PHONY: up
 up:
@@ -30,11 +36,10 @@ stop build:
 		$@ \
 		$(QUICKSTART)
 
-.PHONY: build front
-build front:
+.PHONY: dev front
+dev front:
 	yarn serve
 
-
-.PHONY: run server
-run server:
+.PHONY: dev server
+dev server:
 	yarn run:server

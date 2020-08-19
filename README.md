@@ -1,26 +1,18 @@
 # caracas
 
-## Project setup
+back: Node, front: vue on Docker. Tests are run on docker building.
+
+**you need docker-compose, and be on a unix system**
+
+## Setup
 ```
-yarn install
+make build   # builds docker image, install dependencies, lints, builds front, runs tests, runs server.
+make up      # starts server
 ```
 
-### run front dev: 
-```
-yarn serve
-```
+then connect to https://localhost:8000/
 
-### run server: 
+## To stop it:
 ```
-make run server
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Run unit tests
-```
-yarn test:unit
+make down
 ```

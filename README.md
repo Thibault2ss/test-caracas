@@ -16,3 +16,6 @@ then connect to https://localhost:8000/
 ```
 make down
 ```
+
+## Screenshot
+![Alt text](/src/assets/screenshot.png?raw=true "Screenshot")

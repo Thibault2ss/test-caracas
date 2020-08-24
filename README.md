@@ -5,6 +5,8 @@ back: Node, front: vue on Docker. Tests are run on docker building.
 **you need docker-compose, and be on a unix system**
 
 ## Setup
+- add .env file in project root, then
+
 ```
 make build   # builds docker image, install dependencies, lints, builds front, runs tests, runs server.
 make up      # starts server
